@@ -245,6 +245,12 @@ datanode
 datanode2
 datanode3
 ```
+7-Change directory where the docker-compose file exists and you can now start your container:
+```
+docker-compose up -d
+```
+8-Browse your http://localhost:9870 and check your cluster :
+
 
 
 
