@@ -286,7 +286,9 @@ import sys
           print(f"{current_word}\t{current_count}")
   ```
 10-we create a directory named /input in the Hadoop Distributed File System (HDFS), where we will store the input files for processing.
-<img src="screenshots/3 datanodes.png" width="100%" />
+<img src="screenshots/creation de fichier input.png" width="100%" />
+11-Copy the purchases.txt file from the local file system to HDFS
+<img src="screenshots/coping the data in the folder input inthe hdfs.png" width="100%" />
 
 
 
