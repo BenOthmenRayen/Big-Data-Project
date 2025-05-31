@@ -140,7 +140,7 @@ volumes:
     </property>
 </configuration>
 ```
-3-Below is the configuration for the hdfs-site.xml file, which specifies settings related to the Hadoop Distributed File System (HDFS), such as replication and storage directories:
+3-Below is the configuration for the "hdfs-site.xml" file, which specifies settings related to the Hadoop Distributed File System (HDFS), such as replication and storage directories:
 ```
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
@@ -170,6 +170,82 @@ volumes:
     </property>
 </configuration>
 ```
+4-Below is the configuration for the "mapred-site.xml" file, which defines the MapReduce framework settings, including the execution engine used by Hadoop for job processing:
+```
+<configuration>
+  <property>
+    <name>mapreduce.framework.name</name>
+    <value>yarn</value>
+  </property>
+
+  <property>
+    <name>mapreduce.jobhistory.address</name>
+    <value>historyserver:10020</value>
+  </property>
+
+  <property>
+    <name>mapreduce.jobhistory.webapp.address</name>
+    <value>historyserver:19888</value>
+  </property>
+</configuration>
+```
+5-Below is the configuration for the "yarn-site.xml" file, which sets parameters for the YARN resource manager and node managers, enabling cluster resource management and job scheduling:  
+```
+<configuration>
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>resourcemanager</value>
+  </property>
+
+  <property>
+    <name>yarn.scheduler.minimum-allocation-mb</name>
+    <value>256</value>
+  </property>
+
+  <property>
+    <name>yarn.scheduler.maximum-allocation-mb</name>
+    <value>4096</value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value>4096</value>
+  </property>
+
+ 
+  <property>
+    <name>yarn.app.mapreduce.am.resource.mb</name>
+    <value>1024</value>
+  </property>
+
+  <property>
+    <name>mapreduce.map.memory.mb</name>
+    <value>1024</value>
+  </property>
+
+  <property>
+    <name>mapreduce.reduce.memory.mb</name>
+    <value>1024</value>
+  </property>
+
+  <property>
+    <name>yarn.nodemanager.vmem-check-enabled</name>
+    <value>false</value>
+  </property>
+</configuration>
+```
+6-Below is the content of the "workers.txt" file, which lists all the worker (slave) nodes that will participate in the Hadoop cluster for distributed data processing:  
+```
+datanode
+datanode2
+datanode3
+```
+
 
 
  
