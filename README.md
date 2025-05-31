@@ -250,7 +250,7 @@ datanode3
 docker-compose up -d
 ```
 8-Browse your http://localhost:9870 and check your cluster :
-<img src="screenshot/Capture d’écran 2025-05-30 025942.png" width="100%" />
+<img src="screenshots/3 datanodes.png" width="100%" />
 
 
 
