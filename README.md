@@ -296,8 +296,76 @@ import sys
 <img src="screenshots/output1.png" width="30%" height="360" /> 
 <img src="screenshots/output2.png" width="30%" height="360" /> 
 <img src="screenshots/output3.png" width="30%" height="360" /> 
+</p>   
 
-</p>
+## Part 2 - Apache Spark using Docker : PySpark
+**We will setup a 3-node spark cluster**
+1- We use docker-compose.yml to deploy the Spark cluster services via Docker, enabling an easy-to-manage and scalable Spark environment:   
+ ```
+version: '3.3'
+
+services:
+  spark-master:
+    image: bitnami/spark:latest
+    container_name: spark-master
+    command: bin/spark-class org.apache.spark.deploy.master.Master
+    ports:
+    - 9090:8080
+    - 7077:7077 
+  spark-worker-1:
+    image: bitnami/spark:latest
+    container_name: spark-worker1
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    depends_on:
+      - spark-master
+    environment:
+      SPARK_MODE: worker
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 2g
+      SPARK_MASTER_URL: spark://spark-master:7077
+  spark-worker-2:
+    image: bitnami/spark:latest
+    container_name: spark-worker2
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    depends_on:
+      - spark-master
+    environment:
+      SPARK_MODE: worker
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 2g
+      SPARK_MASTER_URL: spark://spark-master:7077
+ ```
+2-The wordcount.py file contains a Spark application script that reads a text file, processes it using Spark's RDD transformations, and computes the frequency of each word in the dataset:
+ ```
+from pyspark import SparkContext
+
+sc = SparkContext(appName="WordCount")
+rdd = sc.textFile("file:///opt/bitnami/spark/purchases.txt")
+word_counts = rdd.flatMap(lambda line: line.split()) \
+                 .map(lambda word: (word, 1)) \
+                 .reduceByKey(lambda a, b: a + b)
+
+for word, count in word_counts.collect():
+    print(f"{word}: {count}")
+
+sc.stop()
+ ```
+3-Type this command to copy the python script containinng pyspark code :
+```bash
+docker cp sample_pyspark.py spark-master:/opt/bitnami/spark/sample_pyspark.py
+```
+4-run the pyspark job :
+
+<img src="screenshots/excecuttin wordcount.py.png" width="100%" /> 
+
+5-output:
+<p>  
+<img src="screenshots/output1.png" width="30%" height="360" /> 
+<img src="screenshots/output2.png" width="30%" height="360" /> 
+<img src="screenshots/output3.png" width="30%" height="360" /> 
+</p>   
+
+
 
 
 
