@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <!-- Where NameNode stores metadata -->
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>/home/hadoop/hdfs/namenode</value>
+    </property>
+
+    <!-- Where DataNodes store blocks -->
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>/home/hadoop/hdfs/datanode</value>
+    </property>
+
+    <!-- Replication factor (3 for your 3 DataNodes) -->
+    <property>
+        <name>dfs.replication</name>
+        <value>3</value>
+    </property>
+
+    <!-- Disable permissions for development -->
+    <property>
+        <name>dfs.permissions.enabled</name>
+        <value>false</value>
+    </property>
+</configuration>
