@@ -285,10 +285,20 @@ import sys
       if current_word:
           print(f"{current_word}\t{current_count}")
   ```
-10-we create a directory named /input in the Hadoop Distributed File System (HDFS), where we will store the input files for processing.
-<img src="screenshots/creation de fichier input.png" width="100%" />
-11-Copy the purchases.txt file from the local file system to HDFS
-<img src="screenshots/coping the data in the folder input inthe hdfs.png" width="100%" />
+10-we create a directory named /input in the Hadoop Distributed File System (HDFS), where we will store the input files for processing:   
+<img src="screenshots/creation de fichier input .png" width="100%" />   
+11-Copy the purchases.txt file from the local file system to HDFS:  
+<img src="screenshots/coping the data in the folder input inthe hdfs.png" width="100%" />    
+12-To do this, access the NameNode container or machine, then run the following commands:
+<img src="screenshots/commande to run mapreduce job.png" width="100%" />
+13-output:
+<p>  
+<img src="screenshots/output1.png" width="30%" height="360" /> 
+<img src="screenshots/output2.png" width="30%" height="360" /> 
+<img src="screenshots/output3.png" width="30%" height="360" /> 
+
+</p>
+
 
 
 
