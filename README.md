@@ -293,9 +293,9 @@ import sys
 <img src="screenshots/commande to run mapreduce job.png" width="100%" />
 13-output:
 <p>  
-<img src="screenshots/output1.png" width="30%" height="360" /> 
-<img src="screenshots/output2.png" width="30%" height="360" /> 
-<img src="screenshots/output3.png" width="30%" height="360" /> 
+<img src="screenshots/output1.png" width="30%" height="460" /> 
+<img src="screenshots/output2.png" width="30%" height="460" /> 
+<img src="screenshots/output3.png" width="30%" height="460" /> 
 </p>   
 
 ## Part 2 - Apache Spark using Docker : PySpark
@@ -360,9 +360,9 @@ docker cp sample_pyspark.py spark-master:/opt/bitnami/spark/sample_pyspark.py
 
 5-output:
 <p>  
-<img src="screenshots/output1.png" width="30%" height="360" /> 
-<img src="screenshots/output2.png" width="30%" height="360" /> 
-<img src="screenshots/output3.png" width="30%" height="360" /> 
+<img src="screenshots/output1.png" width="30%" height="460" /> 
+<img src="screenshots/output2.png" width="30%" height="460" /> 
+<img src="screenshots/output3.png" width="30%" height="460" /> 
 </p>   
 
 
