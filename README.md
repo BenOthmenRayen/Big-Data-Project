@@ -251,6 +251,42 @@ docker-compose up -d
 ```
 8-Browse your http://localhost:9870 and check your cluster :
 <img src="screenshots/3 datanodes.png" width="100%" />
+9-We can also test the MapReduce functionality using a sample data file named purchases.txt, along with two Python scripts: mapper.py and reducer.py:
+  9.1-The mapper.py file is responsible for reading each line of the dataset and emitting key- 
+   value pairs:
+   ```
+    import sys
+
+    for line in sys.stdin:
+       words = line.strip().split()
+       for word in words:
+         print(f"{word}\t1")
+   ```
+  9.2-The reducer.py file receives the sorted output from the mapper and counts the total 
+    number of occurrences for each unique word:  
+    ```    
+       import sys
+
+      current_word = None
+      current_count = 0
+
+      for line in sys.stdin:
+          word, count = line.strip().split("\t")
+          count = int(count)
+
+          if word == current_word:
+              current_count += count
+          else:
+              if current_word:
+                   print(f"{current_word}\t{current_count}")
+              current_word = word
+              current_count = count
+
+      if current_word:
+          print(f"{current_word}\t{current_count}")
+    ```
+
+
 
 
 
