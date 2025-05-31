@@ -7,7 +7,7 @@ docker version
 docker-compose version
 ```
 **In this section, we set up a 4-node Hadoop cluster consisting of 1 master node and 3 slave nodes. This setup enables distributed storage and processing of large datasets using HDFS and MapReduce. Each node is configured manually to ensure clear understanding of the underlying components and processes.**  
-1- Below is the content of the docker-compose-v3.yml file, which defines and manages the services required to deploy the Hadoop cluster using Docker containers:
+1- Below is the content of the "docker-compose.yml" file, which defines and manages the services required to deploy the Hadoop cluster using Docker containers:
 ```
 version: "3"
 
@@ -112,4 +112,65 @@ volumes:
   hadoop_historyserver:
 
 ```
+2-Below is the configuration for the "core-site.xml" file, which defines essential settings for Hadoop's core components, including the default filesystem and NameNode address:  
+```
+<configuration>
+    <!-- NameNode URI -->
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://namenode:9000</value>
+    </property>
+    
+    <!-- HTTP static user -->
+    <property>
+        <name>hadoop.http.staticuser.user</name>
+        <value>root</value>
+    </property>
+    
+    <!-- Compression codecs -->
+    <property>
+        <name>io.compression.codecs</name>
+        <value>org.apache.hadoop.io.compress.SnappyCodec</value>
+    </property>
+    
+    <!-- Temporary directory -->
+    <property>
+        <name>hadoop.tmp.dir</name>
+        <value>/tmp/hadoop-${user.name}</value>
+    </property>
+</configuration>
+```
+3-Below is the configuration for the hdfs-site.xml file, which specifies settings related to the Hadoop Distributed File System (HDFS), such as replication and storage directories:
+```
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <!-- Where NameNode stores metadata -->
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>/home/hadoop/hdfs/namenode</value>
+    </property>
+
+    <!-- Where DataNodes store blocks -->
+    <property>
+        <name>dfs.datanode.data.dir</name>
+        <value>/home/hadoop/hdfs/datanode</value>
+    </property>
+
+    <!-- Replication factor (3 for your 3 DataNodes) -->
+    <property>
+        <name>dfs.replication</name>
+        <value>3</value>
+    </property>
+
+    <!-- Disable permissions for development -->
+    <property>
+        <name>dfs.permissions.enabled</name>
+        <value>false</value>
+    </property>
+</configuration>
+```
+
+
+ 
 
