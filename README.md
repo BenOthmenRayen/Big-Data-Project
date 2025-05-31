@@ -264,8 +264,8 @@ docker-compose up -d
    ```
   9.2-The reducer.py file receives the sorted output from the mapper and counts the total 
     number of occurrences for each unique word:  
-    ```    
-       import sys
+  ```
+import sys
 
       current_word = None
       current_count = 0
@@ -284,7 +284,9 @@ docker-compose up -d
 
       if current_word:
           print(f"{current_word}\t{current_count}")
-    ```
+  ```
+10-we create a directory named /input in the Hadoop Distributed File System (HDFS), where we will store the input files for processing.
+<img src="screenshots/3 datanodes.png" width="100%" />
 
 
 
